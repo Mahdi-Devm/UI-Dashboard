@@ -1,13 +1,22 @@
-import type { Metadata } from "next";
+import { Poppins, Anton } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
-export const metadata: Metadata = {
-  title: "Vision UI Dashboard",
-  description: "A modern dashboard template",
+export const metadata = {
+  title: "3D Shoes Store",
+  description: "Modern Nike shoe shop with GSAP animations",
 };
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -15,16 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.variable} ${anton.variable}`}>
       <body>
-        <div className="flex min-h-screen ">
-          <Sidebar />
-          <div className="flex-1 ml-[264px] flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1 p-6">{children}</main>
-            <Footer />
-          </div>
-        </div>
+        <main className="flex-1 p-6">{children}</main>
       </body>
     </html>
   );
